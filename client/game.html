@@ -1,0 +1,35 @@
+<template name="game">
+ <div id="score">{{ newScore }}</div>
+ <div id="court">
+        <span style="float: left; cursor: pointer; text-decoration: underline;" onclick="{{ help }}" id="help">Help</span>
+        {{ startDraw }}
+        <canvas id="canvas" width="900" height="500">Your browser old as shit</canvas>
+        <script>
+        var canvas = document.getElementById('canvas');
+        if (canvas.getContext){
+        ctx = canvas.getContext('2d');
+        }
+
+        var fps = 60;
+        function draw() {
+          setTimeout(function() {
+              requestAnimationFrame(draw);
+              if(!wait){
+            court.draw();
+          }
+          }, 1000 / fps);
+        }
+
+        /** first draw **/
+        ctx.clearRect(0,0,900,500);
+        userPaddle.draw();
+        comPaddle.draw();
+        staticBars.draw();
+        ball.draw();
+        wait = true;
+        draw();
+        /****************/
+        </script>
+
+ </div>
+</template>
